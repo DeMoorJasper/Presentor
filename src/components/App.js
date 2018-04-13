@@ -1,19 +1,14 @@
 import React,  { Component } from 'react';
-import TitleSlide from './slideTemplates/TitleSlide';
-import BasicSlide from './slideTemplates/BasicSlide';
+import { Router } from 'react-router';
+import createBrowserHistory from 'history/createBrowserHistory';
+import RenderSlide from './RenderSlide';
+
+const history = createBrowserHistory();
 
 export default class App extends Component {
-  renderTitle() {
-    return <TitleSlide headText="Title text" />;
-  }
-
-  renderBasic() {
-    return <BasicSlide headText="Title text">
-      <p>Some content</p>
-    </BasicSlide>;
-  }
-
   render() {
-    return this.renderTitle();
+    return <Router history={history}>
+      <RenderSlide history={history} />
+    </Router>;
   }
 }

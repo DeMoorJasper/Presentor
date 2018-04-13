@@ -10,6 +10,10 @@ const Container = styled.div`
 `;
 
 export default class Slide extends Component {
+  constructor() {
+    super();
+  }
+
   render() {
     return <Container>
       {this.props.children}

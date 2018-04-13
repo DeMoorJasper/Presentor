@@ -5,13 +5,13 @@ import styled from 'styled-components';
 const Header = styled.header``;
 
 const H1 = styled.h1`
-  font-size: 2rem;
+  font-size: 4rem;
   text-transform: uppercase;
   margin-bottom: 1rem;
 `;
 
 const Content = styled.div`
-  font-size: 1.2rem;
+  font-size: 2rem;
 `;
 
 export default class BasicSlide extends Component {

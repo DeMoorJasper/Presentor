@@ -10,7 +10,7 @@ const Header = styled.header`
 `;
 
 const H1 = styled.h1`
-  font-size: 4rem;
+  font-size: 6rem;
   text-transform: uppercase;
 `;
 
