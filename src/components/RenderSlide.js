@@ -19,6 +19,8 @@ const NavButton = styled.button`
   `}
 `;
 
+const TRANSITION_TIME = 10; // Time before switching slides in ms
+
 // Slides
 import SlideOne from './slides/SlideOne';
 import SlideTwo from './slides/SlideTwo';
@@ -48,7 +50,7 @@ export default class Slide extends Component {
         window.setTimeout(() => {
           this.setState({ transitioning: false });
           this.props.history.push(`/${slideId + 1}`);
-        });
+        }, TRANSITION_TIME);
       }
     }
   }
@@ -62,7 +64,7 @@ export default class Slide extends Component {
         window.setTimeout(() => {
           this.setState({ transitioning: false });
           this.props.history.push(`/${slideId - 1}`);
-        });
+        }, TRANSITION_TIME);
       }
     }
   }
