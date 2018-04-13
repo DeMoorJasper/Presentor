@@ -2,6 +2,8 @@
 
 A framework for creating slideshows using parcel, markdown and react.
 
+![Screenshot](.github/screenshot.png)
+
 ## Why
 
 Some reasons why I've created this framework:
