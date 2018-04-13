@@ -27,29 +27,54 @@ export default class Slide extends Component {
   constructor() {
     super();
     this.state = {
-      lastSlide: 2
+      lastSlide: 2,
+      transitioning: false
     }
     this.nextSlide = this.nextSlide.bind(this);
     this.prevSlide = this.prevSlide.bind(this);
+    this.keyPressHandler = this.keyPressHandler.bind(this);
+  }
+
+  componentDidMount() {
+    document.onkeydown = this.keyPressHandler;
   }
 
   nextSlide(evt) {
-    evt.preventDefault();
+    if (evt) evt.preventDefault();
     if (this.props.history) {
       let slideId = this.props.history.location ? parseInt(this.props.history.location.pathname.substring(1)) : 1;
-      if (slideId < this.state.lastSlide) {
-        this.props.history.push(`/${slideId + 1}`);
+      if (slideId < this.state.lastSlide && !this.state.transitioning) {
+        this.setState({ transitioning: true });
+        window.setTimeout(() => {
+          this.setState({ transitioning: false });
+          this.props.history.push(`/${slideId + 1}`);
+        });
       }
     }
   }
 
   prevSlide(evt) {
-    evt.preventDefault();
+    if (evt) evt.preventDefault();
     if (this.props.history) {
       let slideId = this.props.history.location ? parseInt(this.props.history.location.pathname.substring(1)) : 1;
-      if (slideId > 1) {
-        this.props.history.push(`/${slideId - 1}`);
+      if (slideId > 1 && !this.state.transitioning) {
+        this.setState({ transitioning: true });
+        window.setTimeout(() => {
+          this.setState({ transitioning: false });
+          this.props.history.push(`/${slideId - 1}`);
+        });
       }
+    }
+  }
+
+  keyPressHandler(evt) {
+    switch(evt.code) {
+      case 'Space':
+        return this.nextSlide();
+      case 'ArrowLeft':
+        return this.prevSlide();
+      case 'ArrowRight':
+        return this.nextSlide();
     }
   }
 
@@ -58,8 +83,7 @@ export default class Slide extends Component {
   }
 
   render() {
-    console.log(this.props.history);
-    return <div>
+    return <div onClick={this.nextSlide}>
       <Route exact path="/" component={this.redirectToFirst}/>
 
       <NavButton onClick={this.prevSlide} type='previous'>{'<'}</NavButton>

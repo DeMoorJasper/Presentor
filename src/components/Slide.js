@@ -7,6 +7,7 @@ const Container = styled.div`
   height: 100vh;
   width: 100%;
   padding: 2rem;
+  box-sizing: border-box;
 `;
 
 export default class Slide extends Component {
