@@ -4,6 +4,13 @@ A framework for creating slideshows using parcel, markdown and react.
 
 ![Screenshot](.github/screenshot.png)
 
+## Features
+
+* Navigate using keys (arrow/space)
+* Navigate using click (using buttons or clicking anywhere on a slide)
+* Pre-styled template
+* Routing
+
 ## Why
 
 Some reasons why I've created this framework:
