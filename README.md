@@ -1,6 +1,6 @@
-# Presentor-framework
+# Presentor
 
-A framework for creating slideshows using parcel, markdown and react.
+A template for creating slideshows using parcel and react.
 
 ![Screenshot](.github/screenshot.png)
 

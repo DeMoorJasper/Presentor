@@ -5,14 +5,16 @@ import styled, { css } from 'styled-components';
 const NavButton = styled.button`
   display: inline-block;
   border: none;
-  background: #ffffff;
-  color: #000000;
+  background: none;
+  color: #ffffff;
   font-size: 2rem;
-  padding: 0.5rem;
+  padding-right: 2rem;
+  padding-top: 2rem;
   position: fixed;
   height: 5rem;
   width: 5rem;
   right: 0;
+  z-index: 500;
 
   ${props => props.type === 'previous' && css`
     right: 5rem;
@@ -88,8 +90,20 @@ export default class Slide extends Component {
     return <div onClick={this.nextSlide}>
       <Route exact path="/" component={this.redirectToFirst}/>
 
-      <NavButton onClick={this.prevSlide} type='previous'>{'<'}</NavButton>
-      <NavButton onClick={this.nextSlide} type='next'>{'>'}</NavButton>
+      <NavButton onClick={this.prevSlide} type='previous'>
+        <svg width='20' height='20'>
+          <polygon points="0,10 20,0 20,20" style={{
+            fill: '#ffffff'
+          }} />
+        </svg>
+      </NavButton>
+      <NavButton onClick={this.nextSlide} type='next'>
+        <svg width='20' height='20'>
+            <polygon points="0,0 0,20 20,10" style={{
+              fill: '#ffffff'
+            }} />
+        </svg>
+      </NavButton>
 
       {/* === SLIDES === */}
       <Route path="/1" component={SlideOne}/>
