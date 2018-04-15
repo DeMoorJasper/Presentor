@@ -11,12 +11,18 @@ A template for creating slideshows using parcel and react.
 * Pre-styled template
 * Routing
 
+## Templates
+
+* Title Slide
+* Content Slide
+* Code Fragment Slide
+
 ## Getting started
 
 ### Creating a Slide
 
-Create a react component, you can find examples on every template inside `/src/components/slides`, these are the demo slides.
+Create a react component, you can find an example for every template inside `/src/components/slides`.
 
 ### Naming
 
-For the best result name your slide files according to this naming convention: `Slide{SlideID}.js`
+As the slide imports are alphabetically orders, please maintain the naming convention `Slide{SlideID}.js`
