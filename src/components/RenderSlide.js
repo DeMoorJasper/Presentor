@@ -2,6 +2,8 @@ import React,  { Component } from 'react';
 import { Route, Redirect } from 'react-router';
 import styled, { css } from 'styled-components';
 
+const slidesRequire = require('./slides/*');
+
 const NavButton = styled.button`
   display: inline-block;
   border: none;
@@ -23,17 +25,19 @@ const NavButton = styled.button`
 
 const TRANSITION_TIME = 10; // Time before switching slides in ms
 
-// Slides
-import SlideOne from './slides/SlideOne';
-import SlideTwo from './slides/SlideTwo';
-
 export default class Slide extends Component {
   constructor() {
     super();
+
+    this.slides = Object.keys(slidesRequire).map(key => {
+      return slidesRequire[key];
+    });
+    
     this.state = {
-      lastSlide: 2,
+      lastSlide: this.slides.length - 1,
       transitioning: false
     }
+
     this.nextSlide = this.nextSlide.bind(this);
     this.prevSlide = this.prevSlide.bind(this);
     this.keyPressHandler = this.keyPressHandler.bind(this);
@@ -60,8 +64,8 @@ export default class Slide extends Component {
   prevSlide(evt) {
     if (evt) evt.preventDefault();
     if (this.props.history) {
-      let slideId = this.props.history.location ? parseInt(this.props.history.location.pathname.substring(1)) : 1;
-      if (slideId > 1 && !this.state.transitioning) {
+      let slideId = this.props.history.location ? parseInt(this.props.history.location.pathname.substring(1)) : 0;
+      if (slideId > 0 && !this.state.transitioning) {
         this.setState({ transitioning: true });
         window.setTimeout(() => {
           this.setState({ transitioning: false });
@@ -83,11 +87,11 @@ export default class Slide extends Component {
   }
 
   redirectToFirst() {
-    return <Redirect to="/1" />;
+    return <Redirect to="/0" />;
   }
 
   render() {
-    return <div onClick={this.nextSlide}>
+    return <div>
       <Route exact path="/" component={this.redirectToFirst}/>
 
       <NavButton onClick={this.prevSlide} type='previous'>
@@ -104,10 +108,12 @@ export default class Slide extends Component {
             }} />
         </svg>
       </NavButton>
-
-      {/* === SLIDES === */}
-      <Route path="/1" component={SlideOne}/>
-      <Route path="/2" component={SlideTwo}/>
+      
+      {
+        this.slides.map((Slide, index) => {
+          return <Route key={`slide-${index}`} path={`/${index}`} component={Slide} />;
+        })
+      }
     </div>;
   }
 }
