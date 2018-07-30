@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Slide from '../Slide';
+import Slide from './Slide';
 import styled from 'styled-components';
 import Center from '../UtilComponents/Center';
 import hljs from 'highlight.js';

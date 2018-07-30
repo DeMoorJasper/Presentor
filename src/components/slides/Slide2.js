@@ -1,8 +1,13 @@
 import React from 'react';
-import BasicSlide from '../slideTemplates/BasicSlide';
+import Slide from '../slideTemplates/Slide';
+import {SubHeading} from '../elements/Heading';
+import {Content} from '../elements/Content';
 
 module.exports = () => {
-  return <BasicSlide headText="Title text">
-    <p>Some content</p>
-  </BasicSlide>;
+  return <Slide>
+    <SubHeading>Title text</SubHeading>
+    <Content>
+      <p>Some content</p>
+    </Content>
+  </Slide>;
 }
