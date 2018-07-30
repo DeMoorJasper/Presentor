@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
-import Slide from './Slide';
+import React from 'react';
 import styled from 'styled-components';
-import Center from '../UtilComponents/Center';
 import hljs from 'highlight.js';
 import '../../code-highlighting.css';
-import CodeFragment from '../elements/CodeFragment';
 
 const Pre = styled.pre`
   padding: 2rem;
@@ -21,7 +18,7 @@ const CodeContainer = styled.div`
   padding: 0.5rem;
 `;
 
-export default class BasicSlide extends Component {
+export default class BasicSlide extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -36,7 +33,7 @@ export default class BasicSlide extends Component {
       }}></div>;
     } else {
       return this.props.children;
-    }    
+    }
   }
 
   highlightCode() {
@@ -50,12 +47,15 @@ export default class BasicSlide extends Component {
   }
 
   render() {
-    return <Slide>
-      <Center>
-        <CodeFragment language={this.props.language}>
-          {this.props.children}
-        </CodeFragment>
-      </Center>
-    </Slide>;
+    return <CodeContainer>
+      <svg height="20" width="54">
+        <circle cx="10" cy="10" r="6" fill="#fc605c" />
+        <circle cx="28" cy="10" r="6" fill="#fdbc40" />
+        <circle cx="44" cy="10" r="6" fill="#34c749" />
+      </svg>
+      <Pre>
+        {this.renderHighlighted()}
+      </Pre>
+    </CodeContainer>;
   }
 }
